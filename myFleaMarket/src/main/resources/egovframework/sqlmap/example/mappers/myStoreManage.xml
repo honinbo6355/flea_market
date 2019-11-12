@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.myStore.manage.service.impl.ManageMapper">
+	<select id="selectProductList" parameterType="int" resultType="productVO">
+		SELECT p.PROD_ID, p.STATUS_CODE, c.CMM_CODE_NAME AS STATUS_NAME, p.TITLE, p.PRICE, p.UPD_DATE
+		FROM t_product AS p INNER JOIN t_cmm_code AS c
+		ON p.STATUS_CODE = c.CMM_CODE
+		WHERE p.USER_ID = #{userId}
+		ORDER BY UPD_DATE DESC	
+	</select>
+	
+	<select id="selectAttachList" parameterType="map" resultType="egovMap">
+		SELECT STORED_FILE_NAME, ORIG_FILE_NAME, FILE_SIZE
+		FROM t_attach
+		<where>
+			<if test="prodId != null and prodId != ''">
+				AND PROD_ID = #{prodId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectProduct" parameterType="String" resultType="productVO">
+		SELECT *
+		FROM t_product
+		<where>
+			<if test="value != null and value != ''">
+				AND PROD_ID = #{value}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateProduct" parameterType="productVO">
+		UPDATE t_product
+		
+		SET CATE_CODE = #{cateCode}
+		,	TRADE_CODE = #{tradeCode}
+		,	STATUS_CODE = #{statusCode}
+		,	TITLE = #{title}
+		,	PRICE = #{price}
+		,	DES = #{des}
+		,	STOCK = #{stock}
+		,	UPD_DATE = now()
+		
+		WHERE PROD_ID = #{prodId}
+	</update>
+	
+	<delete id="deleteAttach" parameterType="int">
+		DELETE
+		FROM t_attach
+		WHERE PROD_ID = #{prodId}
+	</delete>
+	
+	<insert id="replaceAttach" parameterType="attachVO">
+		INSERT INTO t_attach(
+			STORED_FILE_NAME
+		,	ORIG_FILE_NAME
+		,	PROD_ID
+		,	FILE_SIZE
+		
+		) VALUES (
+			#{storedFileName}
+		,	#{origFileName}
+		,	#{prodId}
+		,	#{fileSize}
+		)
+	</insert>
+</mapper>
+
+
+
+
+

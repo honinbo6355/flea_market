@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.myStore.register.service.impl.RegisterMapper">
+	<insert id="insertProduct" parameterType="productVO">
+		INSERT INTO t_product (
+			USER_ID
+		,	CATE_CODE
+		,	TRADE_CODE
+		, 	STATUS_CODE
+		, 	TITLE
+		, 	PRICE
+		, 	DES
+		, 	STOCK
+		
+		) VALUES (
+			#{userId}
+		, 	#{cateCode}
+		, 	#{tradeCode}
+		, 	#{statusCode}
+		, 	#{title}
+		,	#{price}
+		,	#{des}
+		,	#{stock} 
+		)
+	</insert>
+	
+	<select id="selectACategoryList" resultType="egovMap">
+		SELECT CATE_CODE, CATE_NAME
+		FROM t_category
+		WHERE CATE_LEVEL = 1
+	</select>
+	
+	<select id="selectBCategoryList" parameterType="String" resultType="egovMap">
+		SELECT CATE_CODE, CATE_NAME, UPPER_CATE_CODE
+		FROM t_category
+		<where>
+			<if test='value != null and value != ""'>
+				AND UPPER_CATE_CODE like #{value}			
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertAttach" parameterType="attachVO">
+		INSERT INTO t_attach(
+			STORED_FILE_NAME
+		,	ORIG_FILE_NAME
+		,	PROD_ID
+		,	FILE_SIZE
+		
+		) VALUES (
+			#{storedFileName}
+		,	#{origFileName}
+		,	LAST_INSERT_ID()
+		,	#{fileSize}
+		)
+	</insert>
+</mapper>

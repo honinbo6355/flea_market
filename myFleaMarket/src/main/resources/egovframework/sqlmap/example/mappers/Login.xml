@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.market.login.service.impl.LoginMapper">
+	<resultMap id="Authority" type="Authority">
+		<result column="ID" property="id" />
+		<result column="AUTHORITY" property="authority" />
+	</resultMap>
+	
+	<resultMap id="UserVO" type="UserVO">
+		<result column="ID" property="id" />
+		<result column="EMAIL" property="email" />
+		<result column="PASSWORD" property="password" />
+		<result column="NICKNAME" property="nickname" />
+		<result column="NAME" property="name" />
+		<result column="BIRTH" property="birth" />
+		<result column="GENDER" property="gender" />
+		<result column="PHONE" property="phone" />
+		<result column="ZIPCODE" property="zipCode" />
+		<result column="ADDR" property="addr" />
+		<result column="SNS_ID" property="snsId" />
+		<result column="SNS_TYPE" property="snsType" />
+		<collection property="authority" resultMap="Authority" />
+	</resultMap>
+	
+	<select id="selectUserByNaverId" parameterType="map" resultMap="UserVO">
+		SELECT u.*, a.authority
+		FROM t_user AS u, t_authority AS a
+		<where>
+			<if test='id != null and id != ""'>
+				AND u.SNS_ID = #{id}
+				AND u.SNS_TYPE = 'naver'
+				AND u.ID = a.ID
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertNaverUser" parameterType="map">
+		INSERT INTO t_user(EMAIL, NICKNAME, NAME, BIRTH, GENDER, PHONE, ZIPCODE, ADDR, SNS_ID, SNS_TYPE)
+		VALUES (#{snsRegisterEmail}, #{snsRegisterNickname}, #{snsRegisterName}, #{snsRegisterBirth}, #{snsRegisterGender}, #{snsRegisterPhone}, #{snsRegisterZipCode}, #{snsRegisterFullAddr}, #{snsRegisterSnsId}, 'naver')
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+      		SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+	
+	<insert id="insertAuthority" parameterType="authority">
+		INSERT INTO t_authority(ID, AUTHORITY)
+		VALUES (#{id}, #{authority})	
+	</insert>
+	
+	<select id="emailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM t_user 
+		<where>
+			<if test='value != null and value != ""'>
+				AND EMAIL = #{value}
+				AND SNS_TYPE IS NULL
+			</if>
+		</where>
+	</select>
+	
+	<select id="nicknameCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM t_user
+		<where>
+			<if test='value != null and value != ""'>
+				AND NICKNAME = #{value}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO t_user(EMAIL, PASSWORD, NICKNAME, NAME, BIRTH, GENDER, PHONE, ZIPCODE, ADDR)
+		VALUES (#{registerEmail}, #{registerPw}, #{registerNickname}, #{registerName}, #{registerBirth}, #{registerGender}, #{registerPhone}, #{registerZipCode}, #{registerFullAddr}) 
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+      		SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+	
+	<select id="selectUserById" parameterType="String" resultType="userVO">
+		SELECT *
+		FROM t_user, t_authority
+		<where>
+			<if test='value != null and value != ""'>
+				AND t_user.EMAIL = #{value}
+				AND t_user.SNS_TYPE IS NULL
+				AND t_user.ID = t_authority.ID
+			</if>
+		</where>
+	</select>
+</mapper>
