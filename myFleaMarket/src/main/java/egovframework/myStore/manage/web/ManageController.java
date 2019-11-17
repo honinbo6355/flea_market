@@ -80,6 +80,8 @@ public class ManageController {
 			
 			ProductVO product = manageService.getProduct(prodId);
 			
+			System.out.println("product : " + product);
+			
 			model.addAttribute("A_CATEGORY_LIST", aCategoryList);
 			model.addAttribute("PROD", product);
 		} catch (Exception e) {
@@ -138,6 +140,19 @@ public class ManageController {
 			System.out.println(e.getMessage());
 		} finally {
 			System.out.println("productModify 메소드 종료");
+		}
+		
+		return "redirect:manage.do";
+	}
+	
+	@RequestMapping(value = "/myStore/productDelete.do", method = RequestMethod.POST)
+	public String productDelete(@RequestParam String prodId) throws Exception{
+		try {
+			manageService.deleteProduct(prodId);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			System.out.println("productDelete 메소드 종료");
 		}
 		
 		return "redirect:manage.do";

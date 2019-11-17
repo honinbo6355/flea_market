@@ -6,6 +6,7 @@ public class ProductVO {
 	private int prodId; /* 상품 아이디 */
 	private int userId; /* 유저 아이디 */
 	private String cateCode; /* 카테고리 코드 */
+	private String upperCateCode; /* 상위 카테고리 코드 */
 	private String tradeCode; /* 거래 방식 */ 
 	private String statusCode; /* 상품 상태 코드 */ 
 	private String title; /* 상품 제목 */ 
@@ -33,6 +34,12 @@ public class ProductVO {
 	}
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
+	}
+	public String getUpperCateCode() {
+		return upperCateCode;
+	}
+	public void setUpperCateCode(String upperCateCode) {
+		this.upperCateCode = upperCateCode;
 	}
 	public String getTradeCode() {
 		return tradeCode;
@@ -90,9 +97,10 @@ public class ProductVO {
 	}
 	@Override
 	public String toString() {
-		return "ProductVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode + ", tradeCode="
-				+ tradeCode + ", statusCode=" + statusCode + ", title=" + title + ", price=" + price + ", des=" + des
-				+ ", stock=" + stock + ", statusName=" + statusName + ", regDate=" + regDate + ", updDate=" + updDate
-				+ "]";
+		return "ProductVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode + ", upperCateCode="
+				+ upperCateCode + ", tradeCode=" + tradeCode + ", statusCode=" + statusCode + ", title=" + title
+				+ ", price=" + price + ", des=" + des + ", stock=" + stock + ", statusName=" + statusName + ", regDate="
+				+ regDate + ", updDate=" + updDate + "]";
 	}
+	
 }

@@ -12,4 +12,5 @@ public interface ManageService {
 	List<EgovMap> getAttachList(Map<String, Object> paramMap) throws Exception;
 	ProductVO getProduct(String prodId) throws Exception;
 	void modifyProduct(ProductVO product, AttachVO attach) throws Exception;
+	void deleteProduct(String prodId) throws Exception;
 }

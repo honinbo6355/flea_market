@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.rte.psl.dataaccess.util.EgovMap;
+
 public class FileUtils {
 
 	public static final String uploadPath = "/upload";
@@ -99,5 +101,20 @@ public class FileUtils {
 		String iconName = dirName + File.separator + fileName;
 		return iconName.replace(File.separatorChar, '/');
 		//return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+	}
+
+	public static void deleteFile(String fileName) {
+		boolean isImage = FileUtils.getMediaType(FileUtils.getFileExtension(fileName)) != null;
+		
+		File fileObj = new File(fileName.replace('/', File.separatorChar));
+		fileObj.delete();
+		
+		if (isImage) {
+			int lastSlash = fileName.lastIndexOf("/") + 1;
+			String realName = fileName.substring(0, lastSlash) + fileName.substring(lastSlash + 2);
+			
+			File realFile = new File(realName.replace('/', File.separatorChar));
+			realFile.delete();
+		}
 	}
 }

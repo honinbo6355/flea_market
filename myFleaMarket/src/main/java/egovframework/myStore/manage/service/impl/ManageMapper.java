@@ -21,7 +21,9 @@ public interface ManageMapper {
 
 	void updateProduct(ProductVO product) throws Exception;
 
-	void deleteAttach(int prodId) throws Exception;
+	void deleteAttach(String prodId) throws Exception;
 
 	void replaceAttach(AttachVO attachVO) throws Exception;
+
+	void deleteProduct(String prodId) throws Exception;
 }

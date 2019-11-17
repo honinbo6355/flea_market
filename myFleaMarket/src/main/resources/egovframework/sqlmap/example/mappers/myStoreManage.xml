@@ -6,7 +6,7 @@
 		FROM t_product AS p INNER JOIN t_cmm_code AS c
 		ON p.STATUS_CODE = c.CMM_CODE
 		WHERE p.USER_ID = #{userId}
-		ORDER BY UPD_DATE DESC	
+		ORDER BY p.UPD_DATE DESC	
 	</select>
 	
 	<select id="selectAttachList" parameterType="map" resultType="egovMap">
@@ -20,11 +20,13 @@
 	</select>
 	
 	<select id="selectProduct" parameterType="String" resultType="productVO">
-		SELECT *
-		FROM t_product
+		SELECT p.*, c.UPPER_CATE_CODE
+		FROM t_product AS p
+		INNER JOIN t_category AS c
+        ON p.CATE_CODE = c.CATE_CODE
 		<where>
 			<if test="value != null and value != ''">
-				AND PROD_ID = #{value}
+				AND p.PROD_ID = #{value}
 			</if>
 		</where>
 	</select>
@@ -44,7 +46,7 @@
 		WHERE PROD_ID = #{prodId}
 	</update>
 	
-	<delete id="deleteAttach" parameterType="int">
+	<delete id="deleteAttach" parameterType="String">
 		DELETE
 		FROM t_attach
 		WHERE PROD_ID = #{prodId}
@@ -64,6 +66,12 @@
 		,	#{fileSize}
 		)
 	</insert>
+	
+	<delete id="deleteProduct" parameterType="String">
+		DELETE
+		FROM t_product
+		WHERE PROD_ID = #{prodId}
+	</delete>
 </mapper>
 
 

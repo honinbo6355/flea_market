@@ -53,7 +53,7 @@
               <div class="col-md-9 col-sm-9 col-xs-9">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>이미지 등록</h2>
+                    <h2>이미지 수정</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -115,7 +115,7 @@
 	                      <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">거래 방식</label>
 	                        <div class="col-md-4 col-sm-4 col-xs-12">
-	                          <select class="form-control" name="tradeCode">
+	                          <select class="form-control" name="tradeCode" id="tradeCode">
 	                            <option value="t1">직거래</option>
 	                            <option value="t2">선불택배(가격에 택배비 포함)</option>
 	                            <option value="t3">착불택배(가격에 택배비 미포함)</option>
@@ -138,7 +138,7 @@
 	                      <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">상태</label>
 	                        <div class="col-md-4 col-sm-4 col-xs-12">
-	                          <select class="form-control" name="statusCode">
+	                          <select class="form-control" name="statusCode" id="statusCode">
 	                            <option value="st1">중고</option>
 	                            <option value="st2">새거</option>
 	                          </select>
@@ -147,13 +147,13 @@
 	                      <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">제목</label>
 	                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          		<input type="text" class="form-control" placeholder="제목 (최대 40자)" name="title" required>
+                          		<input type="text" class="form-control" placeholder="제목 (최대 40자)" name="title" value="${PROD.title}" required>
                         	</div>
 	                      </div>
 	                      <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">가격</label>
 	                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          		<input type="text" class="form-control digit_check" placeholder="10000 (가격은 숫자로만 입력)" name="price" required>
+                          		<input type="text" class="form-control digit_check" placeholder="10000 (가격은 숫자로만 입력)" name="price" value="${PROD.price}" required>
                         	</div>
                         	<!--  
                         	<div class="col-md-2 col-sm-2 col-xs-12"></div>
@@ -172,18 +172,18 @@
 	                      <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">설명</label>
 	                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          		<textarea class="form-control" rows="6" placeholder="상품설명은 2000자까지 가능합니다." name="des"></textarea>
+                          		<textarea class="form-control" rows="6" placeholder="상품설명은 2000자까지 가능합니다." name="des">${PROD.des}</textarea>
                         	</div>
 	                      </div>
 	                      <div class="form-group">
 	                      	<label class="control-label col-md-2 col-sm-2 col-xs-12">수량</label>
 	                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          		<input type="text" class="form-control digit_check" placeholder="1" name="stock" required>
+                          		<input type="text" class="form-control digit_check" placeholder="1" name="stock" value="${PROD.stock}" required>
                         	</div>
 	                      </div>
 	                      <div class="form-group">
 	                        <div class="col-md-11 col-sm-11 col-xs-11" style="text-align:right;">
-	                          <button type="submit" class="btn btn-success">물품 등록</button>
+	                          <button type="submit" class="btn btn-success">물품 수정</button>
 	                        </div>
 	                      </div>
 	                    </form>
@@ -218,7 +218,9 @@
 			},
 			
 			aCategoryChange : function() {
-				var aCategoryObj = {"aCategory" : $(this).val()};
+				debugger;
+				
+				var aCategoryObj = {"aCategory" : $('#a_category').val()};
 				
 				$('#b_category').children().remove();
 				
@@ -228,6 +230,7 @@
 					type : "post",
 					url : "bCategoryList.do",
 					contentType : "application/json",
+					async: false,
 					data : JSON.stringify(aCategoryObj),
 					success : function(data) {
 						console.log(data);
@@ -267,6 +270,8 @@
 			},
 			
 			displayBCategory : function(bCategoryObj) {
+				debugger;
+				
 				if (bCategoryObj.length > 0) {						
 					$.each(bCategoryObj, function(index, item) {
 						var bCategoryOption = "<option value='" + item.cateCode + "'>" + item.cateName + "</option>";
@@ -290,29 +295,6 @@
 				
 				var refFile = file.previewElement;
 				refFile.parentNode.removeChild(file.previewElement);
-				
-				/*
-				var resFile = $(file._removeLink).data("resFile");
-				
-				console.log(resFile);
-				
-				$.ajax({
-					url: "deleteFile.do",
-					type: "POST",
-					data: JSON.stringify({file : resFile}),
-					contentType: "application/json",
-					success : function(data) {
-						debugger;
-						if (data === "deleted") {
-							var refFile = file.previewElement;
-							refFile.parentNode.removeChild(file.previewElement);
-						}
-					},
-					error : function(data) {
-						
-					}
-				});
-				*/
 			},
 			init : function() {
 				debugger;
@@ -327,6 +309,7 @@
 					url: 'getUploadFile.do',
 					type: 'POST',
 					contentType: 'application/json',
+					async: false,
 					data: JSON.stringify(prodIdObj),
 					success : function(data) {
 						debugger;
@@ -390,6 +373,28 @@
 					}
 				});
 			}
+		});
+		
+		$(document).ready(function() {
+			debugger;
+			
+			// 물품 정보 가져오기
+			var upperCateCode = "<c:out value='${PROD.upperCateCode}' />";
+			var cateCode = "<c:out value='${PROD.cateCode}' />";
+			var tradeCode = "<c:out value='${PROD.tradeCode}' />";
+			var statusCode = "<c:out value='${PROD.statusCode}' />";
+			
+			if (upperCateCode != null && upperCateCode != '') {
+				$('#a_category').val(upperCateCode);
+				productModify.aCategoryChange();
+				$('#b_category').val(cateCode);
+			} else {
+				$('#a_category').val(cateCode);
+				productModify.aCategoryChange();
+			}
+			
+			$('#tradeCode').val(tradeCode);
+			$('#statusCode').val(statusCode);
 		});
 		
 		productModify.init();

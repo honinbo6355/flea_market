@@ -139,30 +139,10 @@ public class RegisterController {
 		
 		try {
 			Map<String, Object> paramMap = JsonUtils.JsonToMap(file);
-			
-			System.out.println("paramMap : " + paramMap);
-			
 			String fileName = (String)paramMap.get("file");
 			
-			System.out.println("fileName : " + fileName);
+			FileUtils.deleteFile(fileName);
 			
-			boolean isImage = FileUtils.getMediaType(FileUtils.getFileExtension(fileName)) != null;
-			
-			System.out.println(fileName);
-			System.out.println(isImage);
-			
-			File fileObj = new File(fileName);
-			fileObj.delete();
-			
-			if (isImage) {
-				int lastSlash = fileName.lastIndexOf("/") + 1;
-				String realName = fileName.substring(0, lastSlash) + fileName.substring(lastSlash + 2);
-				
-				System.out.println("realName : " + realName);
-				
-				File realFile = new File(realName);
-				realFile.delete();
-			}
 			entity = new ResponseEntity<>("deleted", HttpStatus.OK);
 		} catch (Exception e) {
 			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

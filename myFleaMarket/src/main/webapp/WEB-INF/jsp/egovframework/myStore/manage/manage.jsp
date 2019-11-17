@@ -75,7 +75,7 @@
 	                          <td><fmt:formatDate value="${product.updDate}" pattern="yyyy-MM-dd"/></td>
 	                          <td>
 	                          	<button type="button" class="btn btn-success">보기</button>
-		                        <button type="button" class="btn btn-danger">삭제</button>
+		                        <button type="button" class="btn btn-danger" onclick="deleteProduct(${product.prodId})">삭제</button>
 	                          </td>
 	                        </tr>	
                       	</c:forEach>
@@ -176,4 +176,19 @@
 	        </div>
         </div>
     </div>
+    
+    <form method="post" action="productDelete.do" id="deleteForm">
+    	<input type="hidden" name="prodId" id="prodId">
+    </form>
+    
+    <script type="text/javascript">
+    	function deleteProduct(prodId) {
+			var result = confirm('정말 삭제하시겠습니까?');
+			
+    		if (result) {
+    			$('#prodId').val(prodId);
+    			$('#deleteForm').submit();
+    		}
+    	}
+    </script>
     
