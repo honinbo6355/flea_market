@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import egovframework.market.cmmn.service.util.FileUtils;
 import egovframework.market.cmmn.service.util.JsonUtils;
+import egovframework.market.cmmn.service.util.SearchVO;
 import egovframework.myStore.manage.service.ManageService;
 import egovframework.myStore.register.service.AttachVO;
 import egovframework.myStore.register.service.ProductVO;
@@ -25,8 +26,8 @@ public class ManageServiceImpl implements ManageService {
 	private ManageMapper manageMapper;
 	
 	@Override
-	public List<ProductVO> getProductList(int userId) throws Exception {
-		return manageMapper.selectProductList(userId);
+	public List<ProductVO> getProductList(Map<String, Object> paramMap) throws Exception {
+		return manageMapper.selectProductList(paramMap);
 	}
 
 	@Override
@@ -69,5 +70,10 @@ public class ManageServiceImpl implements ManageService {
 		
 		manageMapper.deleteAttach(prodId);
 		manageMapper.deleteProduct(prodId);
+	}
+
+	@Override
+	public int getProductListCnt(Map<String, Object> paramMap) throws Exception {
+		return manageMapper.selectProductListCnt(paramMap);
 	}
 }

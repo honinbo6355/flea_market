@@ -3,6 +3,7 @@ package egovframework.myStore.manage.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.market.cmmn.service.util.FileUtils;
 import egovframework.market.cmmn.service.util.JsonUtils;
+import egovframework.market.cmmn.service.util.PagingVO;
+import egovframework.market.cmmn.service.util.SearchVO;
 import egovframework.market.login.service.UserVO;
 import egovframework.myStore.manage.service.ManageService;
 import egovframework.myStore.register.service.AttachVO;
@@ -48,17 +52,30 @@ public class ManageController {
 	private RegisterService registerService;
 	
 	@RequestMapping(value = "/myStore/manage.do", method = RequestMethod.GET)
-	public String myStoreManage(ModelMap model, HttpSession session) throws Exception {
+	public String myStoreManage(ModelMap model, HttpSession session, @ModelAttribute SearchVO searchVO) throws Exception {
 		logger.info("myStoreManage .....");
 		
 		try {
 			int userId = ((UserVO)session.getAttribute("USER")).getId();
 			System.out.println(userId);
 			
-			List<ProductVO> productList = manageService.getProductList(userId);
-			logger.info("productList={}", productList.get(0).getStatusName());
-
+			Map<String, Object> paramMap = new HashMap<>();
+			
+			paramMap.put("userId", userId);
+			paramMap.put("pageStart", searchVO.getPageStart());
+			paramMap.put("perPageNum", searchVO.getPerPageNum());
+			paramMap.put("keyword", searchVO.getKeyword());
+			
+			List<ProductVO> productList = manageService.getProductList(paramMap);
+			logger.info("productList={}", productList);
+			
+			int count = manageService.getProductListCnt(paramMap);
+			PagingVO pagingVO = new PagingVO();
+			pagingVO.setSearch(searchVO);
+			pagingVO.setTotalCount(count);
+			
 			model.addAttribute("PROD_LIST", productList);
+			model.addAttribute("PAGING", pagingVO);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -70,7 +87,7 @@ public class ManageController {
 	}
 	
 	@RequestMapping(value = "/myStore/modify.do", method = RequestMethod.GET)
-	public String myStoreModify(@RequestParam String prodId, ModelMap model) throws Exception {
+	public String myStoreModify(@RequestParam String prodId, ModelMap model, @ModelAttribute SearchVO searchVO) throws Exception {
 		System.out.println("prodId : " + prodId);
 		
 		try {
@@ -84,6 +101,7 @@ public class ManageController {
 			
 			model.addAttribute("A_CATEGORY_LIST", aCategoryList);
 			model.addAttribute("PROD", product);
+			model.addAttribute("SEARCH", searchVO);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -121,7 +139,8 @@ public class ManageController {
 	}
 	
 	@RequestMapping(value = "/myStore/productModify.do", method = RequestMethod.POST)
-	public String productModify(HttpSession session, @ModelAttribute ProductVO product, @ModelAttribute AttachVO attach, BindingResult bindingResult) throws Exception {
+	public String productModify(HttpSession session, @ModelAttribute ProductVO product, @ModelAttribute AttachVO attach
+			, BindingResult bindingResult) throws Exception {
 		try {
 			if (bindingResult.hasErrors()) {
 				List<ObjectError> errors = bindingResult.getAllErrors();
@@ -146,9 +165,12 @@ public class ManageController {
 	}
 	
 	@RequestMapping(value = "/myStore/productDelete.do", method = RequestMethod.POST)
-	public String productDelete(@RequestParam String prodId) throws Exception{
+	public String productDelete(@RequestParam String prodId, RedirectAttributes redirectAttributes, SearchVO searchVO) throws Exception{
 		try {
 			manageService.deleteProduct(prodId);
+			redirectAttributes.addAttribute("page", searchVO.getPage());
+			redirectAttributes.addAttribute("perPageNum", searchVO.getPerPageNum());
+			redirectAttributes.addAttribute("keyword", searchVO.getKeyword());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {

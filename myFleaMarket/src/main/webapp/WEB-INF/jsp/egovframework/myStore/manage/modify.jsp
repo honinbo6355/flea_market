@@ -182,8 +182,9 @@
                         	</div>
 	                      </div>
 	                      <div class="form-group">
-	                        <div class="col-md-11 col-sm-11 col-xs-11" style="text-align:right;">
-	                          <button type="submit" class="btn btn-success">물품 수정</button>
+	                        <div class="col-md-11 col-sm-11 col-xs-11">
+	                          <button type="button" class="btn btn-primary pull-left" id="goList">목록으로</button>	
+	                          <button type="submit" class="btn btn-success pull-right">물품 수정</button>
 	                        </div>
 	                      </div>
 	                    </form>
@@ -374,6 +375,11 @@
 				});
 			}
 		});
+		
+		$('#goList').on('click', function() {
+			window.location.href = "manage.do?page=${SEARCH.page}&perPageNum=${SEARCH.perPageNum}"
+					+ "&keyword=${SEARCH.keyword}";
+		})
 		
 		$(document).ready(function() {
 			debugger;

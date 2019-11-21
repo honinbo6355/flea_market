@@ -29,9 +29,6 @@
                   <li><a href="/main.do"><i class="fa fa-home"></i> 홈 </a></li>
                   <li><a href="register.do"><i class="fa fa-edit"></i> 물품 등록 </a></li>
                   <li><a href="manage.do"><i class="fa fa-desktop"></i> 물품 관리 </a></li>
-                  <li><a href="#"><i class="fa fa-table"></i> 토르톡 목록 </a></li>
-                  <li><a href="#"><i class="fa fa-bar-chart-o"></i> 구매/판매내역 </a></li>
-                  <li><a href="#"><i class="fa fa-clone"></i>탈퇴하러가기 </a></li>
                 </ul>
               </div>
             </div>
