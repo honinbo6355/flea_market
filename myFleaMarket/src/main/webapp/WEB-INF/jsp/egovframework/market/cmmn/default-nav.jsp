@@ -28,11 +28,11 @@
                                 		<li style="padding:8px 10px 0px 10px;"><a href="loginRegister.do"><i class="material-icons">input</i></a></li>
                                 	</c:when>
                                 	<c:otherwise>
-                                		<c:if test="${sessionScope.USER.authority.authority == 'admin'}">
-		            						<li><a href="/admin/main.do"><span class="ti-user"></span></a></li>	
+		            					<li><a href="/myStore/register.do"><span class="ti-user"></span></a></li>  
+		            					<li><a href="logout.do"><span class="ti-power-off"></span></a></li>
+		            					<c:if test="${sessionScope.USER.authority.authority == 'admin'}">
+		            						<li><a href="/admin/main.do"><span class="ti-settings"></span></a></li>	
 		            					</c:if>
-		            					<li><a href="myPage.do"><span class="ti-user"></span></a></li>  
-		            					<li><a href="logout.do"><span class="ti-user"></span></a></li>
                                 	</c:otherwise>
                                 </c:choose>
                                 <li class="cart__menu"><span class="ti-shopping-cart"></span></li>

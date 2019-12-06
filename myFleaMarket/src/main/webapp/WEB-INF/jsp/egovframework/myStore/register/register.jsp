@@ -216,8 +216,6 @@
 				
 				$('#b_category').children().remove();
 				
-				$('#b_category').append("<option value='" + aCategoryObj.aCategory + "'>전체</option>");
-				
 				$.ajax({
 					type : "post",
 					url : "bCategoryList.do",
@@ -265,6 +263,8 @@
 						
 						$('#b_category').append(bCategoryOption);
 					});	
+				} else {
+					$('#b_category').append("<option value='" + $('#a_category').val() + "'>전체</option>");
 				}
 			}		
 		};

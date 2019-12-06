@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.market.category.service.impl.CategoryMapper">
+	<select id="selectLeftCategoryList" parameterType="category" resultType="category">
+		SELECT CATE_CODE, CATE_NAME, UPPER_CATE_CODE, CATE_LEVEL  
+		FROM t_category
+		<where>
+			<if test="cateLevel == 1 and cateCode != null and cateCode != ''">
+				AND CATE_CODE = #{cateCode} OR UPPER_CATE_CODE = #{cateCode}
+			</if>
+			<if test="cateLevel == 2 and cateCode != null and cateCode != ''">
+				AND UPPER_CATE_CODE =
+				(SELECT UPPER_CATE_CODE
+		        FROM t_category
+		        WHERE CATE_CODE = #{cateCode}
+		        ) OR CATE_CODE =
+		        (SELECT UPPER_CATE_CODE
+		        FROM t_category
+		        WHERE CATE_CODE = #{cateCode})
+			</if>
+		</where>
+		ORDER BY UPPER_CATE_CODE IS NULL desc
+	</select>
+	
+	<select id="selectCateProductList" parameterType="map" resultType="productVO">
+		SELECT p.*, a.STORED_FILE_NAME
+		FROM t_product AS p 
+		<include refid="egovframework.market.cmmn.service.impl.CommonMapper.prodJoinAttach" />
+		<where>
+			<if test="cateLevel == 1 and cateCode != null and cateCode != ''">
+				AND p.CATE_CODE in (
+				(SELECT CATE_CODE
+				FROM t_category
+				WHERE UPPER_CATE_CODE = #{cateCode}
+				)
+				)
+			</if>
+			<if test="cateLevel == 2 and cateCode != null and cateCode != ''">
+				AND p.CATE_CODE = #{cateCode}
+			</if>
+		</where>
+		ORDER BY p.UPD_DATE DESC, p.PROD_ID DESC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="selectCateProductCnt" parameterType="category" resultType="int">
+		SELECT COUNT(*)
+		FROM t_product
+		<where>
+			<if test="cateLevel == 1 and cateCode != null and cateCode != ''">
+				AND CATE_CODE in (
+				(SELECT CATE_CODE
+				FROM t_category
+				WHERE UPPER_CATE_CODE = #{cateCode}
+				)
+				)
+			</if>
+			<if test="cateLevel == 2 and cateCode != null and cateCode != ''">
+				AND CATE_CODE = #{cateCode}
+			</if>
+		</where>
+	</select>	
+</mapper>

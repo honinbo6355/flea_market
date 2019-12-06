@@ -15,3 +15,11 @@
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
     
+    <script type="text/javascript">
+    	function getOriginalFile(fileName) {
+			var lastSlash = fileName.lastIndexOf('/')+1;
+			var realFile = fileName.substr(0, lastSlash) + fileName.substr(lastSlash+2);
+			return realFile;
+		}
+    </script>
+    

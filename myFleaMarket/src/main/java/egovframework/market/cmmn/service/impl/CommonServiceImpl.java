@@ -21,24 +21,7 @@ public class CommonServiceImpl implements CommonService{
 	private CommonMapper commonMapper;
 	
 	@Override
-	public JsonArray getCategoryList() throws Exception {
-		List<Category> categoryList;
-		JsonArray jsonCategoryArray;
-		Gson gson;
-		JsonElement jsonCategoryElement;
-		
-		categoryList = commonMapper.selectCategoryList();
-		
-		gson = new Gson();
-		jsonCategoryElement = gson.toJsonTree(categoryList, new TypeToken<List<Category>>() {}.getType());
-			
-		if (!jsonCategoryElement.isJsonArray()) {
-			throw new Exception();
-		}
-		jsonCategoryArray = jsonCategoryElement.getAsJsonArray();
-
-		System.out.println("getCategoryList() jsonCategoryArray : " + jsonCategoryArray);
-		
-		return jsonCategoryArray;
+	public List<Category> getCategoryList() throws Exception {
+		return commonMapper.selectCategoryList();
 	}
 }

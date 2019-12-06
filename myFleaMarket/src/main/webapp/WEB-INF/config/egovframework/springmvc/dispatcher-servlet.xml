@@ -80,6 +80,7 @@
     
     <!-- 인터셉터 처리 -->
     <bean id="authenticationInterceptor" class="egovframework.market.interceptor.AuthenticationInterceptor" />
+    <bean id="categoryInterceptor" class="egovframework.market.interceptor.CategoryInterceptor" />
     
     <!-- 파일 업로드 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
@@ -89,6 +90,11 @@
     		<mvc:mapping path="/admin/**" />
     		<mvc:mapping path="/myStore/**" />
     		<ref bean="authenticationInterceptor" />
+    	</mvc:interceptor>
+    	
+    	<mvc:interceptor>
+    		<mvc:mapping path="/categoryMain.do" />
+    		<ref bean="categoryInterceptor" />
     	</mvc:interceptor>
     </mvc:interceptors>
 

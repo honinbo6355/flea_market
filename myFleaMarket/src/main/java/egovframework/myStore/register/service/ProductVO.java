@@ -13,7 +13,8 @@ public class ProductVO {
 	private int price; /* 상품 가격 */
 	private String des; /* 상품 설명 */
 	private int stock; /* 상품 수량 */
-	private String statusName;
+	private String statusName; /* 상품 상태 */
+	private String storedFileName;
 	private Date regDate;
 	private Date updDate;
 	
@@ -83,6 +84,12 @@ public class ProductVO {
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
 	}
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
+	}
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -99,8 +106,7 @@ public class ProductVO {
 	public String toString() {
 		return "ProductVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode + ", upperCateCode="
 				+ upperCateCode + ", tradeCode=" + tradeCode + ", statusCode=" + statusCode + ", title=" + title
-				+ ", price=" + price + ", des=" + des + ", stock=" + stock + ", statusName=" + statusName + ", regDate="
-				+ regDate + ", updDate=" + updDate + "]";
+				+ ", price=" + price + ", des=" + des + ", stock=" + stock + ", statusName=" + statusName
+				+ ", storedFileName=" + storedFileName + ", regDate=" + regDate + ", updDate=" + updDate + "]";
 	}
-	
 }

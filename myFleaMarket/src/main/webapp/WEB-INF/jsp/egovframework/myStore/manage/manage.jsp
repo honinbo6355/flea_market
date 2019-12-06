@@ -61,6 +61,7 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
+                          <th>사진</th>
                           <th>상태</th>
                           <th>물품명</th>
                           <th>가격</th>
@@ -71,6 +72,8 @@
                       <tbody>
                       	<c:forEach var="product" items="${PROD_LIST}">
 	                      	<tr>
+	                      	  <td><img src="${product.storedFileName}" /></td>
+	                      	  
 	                          <td><c:out value="${product.statusName}" /></td>
 	                          <td><a href="modify.do?prodId=${product.prodId}&page=${PAGING.search.page}&perPageNum=${PAGING.search.perPageNum}
 	                          &keyword=${PAGING.search.keyword}" style="color:#337ab7"><c:out value="${product.title}" /></a></td>

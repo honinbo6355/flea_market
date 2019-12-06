@@ -6,4 +6,20 @@
 		FROM t_category
 		ORDER BY UPPER_CATE_CODE IS NULL desc
 	</select>
+	
+	<sql id="search">
+		<if test="keyword != null and keyword != ''">
+			AND TITLE LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+	</sql>
+	
+	<sql id="prodJoinAttach">
+		INNER JOIN 
+		(SELECT PROD_ID, STORED_FILE_NAME
+		FROM t_attach
+		GROUP BY PROD_ID
+		) AS a
+		ON p.PROD_ID = a.PROD_ID
+	</sql>
+	
 </mapper>

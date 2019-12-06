@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
     <meta charset="utf-8">
@@ -35,7 +36,8 @@
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- jquery latest version -->
     <script src="js/vendor/jquery-1.12.0.min.js"></script>
-    
+    <!-- handlebars.min.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
     <script type="text/javascript">
     	var formCheck = {
     		digitCheckKeydown : function() {
@@ -49,5 +51,22 @@
         		}
         	},
     	}
+    	
+    	function getCategoryList() {
+    		var categoryArr = [];
+			
+			<c:forEach items="${CATEGORY_LIST}" var="category">
+				var categoryObj = {};
+				categoryObj.cateCode = "${category.cateCode}";
+				categoryObj.cateName = "${category.cateName}";
+				categoryObj.upperCateCode = "${category.upperCateCode}";
+				categoryObj.cateLevel = "${category.cateLevel}";
+				categoryArr.push(categoryObj);
+			</c:forEach>
+			
+			return categoryArr;
+    	}
+    	
+    	
     </script>
 </head>
