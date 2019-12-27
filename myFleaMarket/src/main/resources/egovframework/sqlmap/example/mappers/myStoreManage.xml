@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.myStore.manage.service.impl.ManageMapper">
-	<select id="selectProductList" parameterType="map" resultType="productVO">
-		SELECT p.PROD_ID, p.STATUS_CODE, c.CMM_CODE_NAME AS STATUS_NAME, p.TITLE, p.PRICE, p.UPD_DATE, a.STORED_FILE_NAME
+	<select id="selectProductList" parameterType="map" resultType="productResultVO">
+		SELECT p.PROD_ID, c.CMM_CODE_NAME AS STATUS_NAME, p.TITLE, p.PRICE, p.UPD_DATE, a.STORED_FILE_NAME
 		FROM t_product AS p INNER JOIN t_cmm_code AS c
 		ON p.STATUS_CODE = c.CMM_CODE
 		<include refid="egovframework.market.cmmn.service.impl.CommonMapper.prodJoinAttach" /> 
@@ -22,7 +22,7 @@
 		</where>
 	</select>
 	
-	<select id="selectProduct" parameterType="String" resultType="productVO">
+	<select id="selectProduct" parameterType="String" resultType="productResultVO">
 		SELECT p.*, c.UPPER_CATE_CODE
 		FROM t_product AS p
 		INNER JOIN t_category AS c

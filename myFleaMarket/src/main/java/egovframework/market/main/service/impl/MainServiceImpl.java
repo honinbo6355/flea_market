@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.market.main.service.MainService;
-import egovframework.myStore.register.service.ProductVO;
+import egovframework.myStore.register.service.ProductResultVO;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService {
@@ -16,7 +16,7 @@ public class MainServiceImpl implements MainService {
 	private MainMapper mainMapper;
 	
 	@Override
-	public List<ProductVO> getRecommProductList() throws Exception {
+	public List<ProductResultVO> getRecommProductList() throws Exception {
 		return mainMapper.selectRecommProductList();
 	}
 }

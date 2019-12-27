@@ -2,16 +2,20 @@ package egovframework.myStore.register.service;
 
 import java.sql.Date;
 
-public class ProductVO {
+public class ProductResultVO {
 	private int prodId; /* 상품 아이디 */
 	private int userId; /* 유저 아이디 */
 	private String cateCode; /* 카테고리 코드 */
+	private String upperCateCode; /* 상위 카테고리 코드 */
 	private String tradeCode; /* 거래 방식 */ 
 	private String statusCode; /* 상품 상태 코드 */ 
 	private String title; /* 상품 제목 */ 
 	private int price; /* 상품 가격 */
 	private String des; /* 상품 설명 */
 	private int stock; /* 상품 수량 */
+	private String statusName; /* 상품 상태 */
+	private String storedFileName;
+	private String tradeName;
 	private Date regDate;
 	private Date updDate;
 	
@@ -32,6 +36,12 @@ public class ProductVO {
 	}
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
+	}
+	public String getUpperCateCode() {
+		return upperCateCode;
+	}
+	public void setUpperCateCode(String upperCateCode) {
+		this.upperCateCode = upperCateCode;
 	}
 	public String getTradeCode() {
 		return tradeCode;
@@ -69,6 +79,24 @@ public class ProductVO {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	public String getStatusName() {
+		return statusName;
+	}
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
+	}
+	public String getTradeName() {
+		return tradeName;
+	}
+	public void setTradeName(String tradeName) {
+		this.tradeName = tradeName;
+	}
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -81,11 +109,12 @@ public class ProductVO {
 	public void setUpdDate(Date updDate) {
 		this.updDate = updDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "ProductVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode + ", tradeCode="
-				+ tradeCode + ", statusCode=" + statusCode + ", title=" + title + ", price=" + price + ", des=" + des
-				+ ", stock=" + stock + ", regDate=" + regDate + ", updDate=" + updDate + "]";
+		return "ProductResultVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode
+				+ ", upperCateCode=" + upperCateCode + ", tradeCode=" + tradeCode + ", statusCode=" + statusCode
+				+ ", title=" + title + ", price=" + price + ", des=" + des + ", stock=" + stock + ", statusName="
+				+ statusName + ", storedFileName=" + storedFileName + ", tradeName=" + tradeName + ", regDate="
+				+ regDate + ", updDate=" + updDate + "]";
 	}
 }

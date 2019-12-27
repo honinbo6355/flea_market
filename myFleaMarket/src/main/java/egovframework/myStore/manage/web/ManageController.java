@@ -36,6 +36,7 @@ import egovframework.market.cmmn.service.util.SearchVO;
 import egovframework.market.login.service.UserVO;
 import egovframework.myStore.manage.service.ManageService;
 import egovframework.myStore.register.service.AttachVO;
+import egovframework.myStore.register.service.ProductResultVO;
 import egovframework.myStore.register.service.ProductVO;
 import egovframework.myStore.register.service.RegisterService;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -66,7 +67,7 @@ public class ManageController {
 			paramMap.put("perPageNum", searchVO.getPerPageNum());
 			paramMap.put("keyword", searchVO.getKeyword());
 			
-			List<ProductVO> productList = manageService.getProductList(paramMap);
+			List<ProductResultVO> productList = manageService.getProductList(paramMap);
 			logger.info("productList={}", productList);
 			
 			int count = manageService.getProductListCnt(paramMap);
@@ -95,7 +96,7 @@ public class ManageController {
 			
 			System.out.println("aCategoryList : " + aCategoryList);
 			
-			ProductVO product = manageService.getProduct(prodId);
+			ProductResultVO product = manageService.getProduct(prodId);
 			
 			System.out.println("product : " + product);
 			

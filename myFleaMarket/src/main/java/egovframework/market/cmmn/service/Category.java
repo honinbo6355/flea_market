@@ -1,6 +1,6 @@
 package egovframework.market.cmmn.service;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Category {
 	private String cateCode;

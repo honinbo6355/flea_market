@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<head>
 	<!-- Dropzone.css -->
     <link href="vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     
     <!-- Switchery -->
     <link href="vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+</head>
     
 <style>
 	/*
@@ -110,9 +112,9 @@
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">거래 방식</label>
 	                        <div class="col-md-4 col-sm-4 col-xs-12">
 	                          <select class="form-control" name="tradeCode">
-	                            <option value="t1">직거래</option>
-	                            <option value="t2">선불택배(가격에 택배비 포함)</option>
-	                            <option value="t3">착불택배(가격에 택배비 미포함)</option>
+	                            <option value="tr1">직거래</option>
+	                            <option value="tr2">선불택배(가격에 택배비 포함)</option>
+	                            <option value="tr3">착불택배(가격에 택배비 미포함)</option>
 	                          </select>
 	                        </div>
 	                      </div>
@@ -134,7 +136,7 @@
 	                        <div class="col-md-4 col-sm-4 col-xs-12">
 	                          <select class="form-control" name="statusCode">
 	                            <option value="st1">중고</option>
-	                            <option value="st2">새거</option>
+	                            <option value="st2">새상품</option>
 	                          </select>
 	                        </div>
 	                      </div>
@@ -241,6 +243,9 @@
 				} else if ($('.dz-preview').length == 0) {
 					alert("물품 이미지를 등록해주세요");
 					return false;
+				} else if ($('.dz-preview').length > 4) {
+					alert("물품 이미지는 최대 4개까지 등록가능합니다");
+					return false;
 				}
 				
 				var $that = $(this);
@@ -273,8 +278,8 @@
 			addRemoveLinks: true,
 			acceptedFiles: 'image/*',
 			maxFilesize: 10,
-			maxFiles: 5,
-			parallelUploads: 5,
+			maxFiles: 4,
+			parallelUploads: 4,
 			uploadMultiple: true,
 			
 			removedfile : function(file) {

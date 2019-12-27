@@ -14,7 +14,7 @@ import com.google.gson.JsonArray;
 import egovframework.market.cmmn.service.Category;
 import egovframework.market.cmmn.service.CommonService;
 import egovframework.market.main.service.MainService;
-import egovframework.myStore.register.service.ProductVO;
+import egovframework.myStore.register.service.ProductResultVO;
 
 @Controller
 public class MainController {
@@ -29,7 +29,7 @@ public class MainController {
 	public String main(ModelMap model) throws Exception {
 		try {
 			List<Category> categoryList = commonService.getCategoryList();
-			List<ProductVO> productList = mainService.getRecommProductList();
+			List<ProductResultVO> productList = mainService.getRecommProductList();
 			
 			System.out.println("productList : " + productList);
 			

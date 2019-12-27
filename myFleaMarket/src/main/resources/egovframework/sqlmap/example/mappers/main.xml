@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.market.main.service.impl.MainMapper">
-	<select id="selectRecommProductList" resultType="productVO">
+	<select id="selectRecommProductList" resultType="productResultVO">
 		SELECT p.*, a.STORED_FILE_NAME
 		FROM t_product AS p 
 		<include refid="egovframework.market.cmmn.service.impl.CommonMapper.prodJoinAttach" />

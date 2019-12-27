@@ -5,13 +5,14 @@ import java.util.Map;
 
 import egovframework.market.cmmn.service.util.SearchVO;
 import egovframework.myStore.register.service.AttachVO;
+import egovframework.myStore.register.service.ProductResultVO;
 import egovframework.myStore.register.service.ProductVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 public interface ManageService {
-	List<ProductVO> getProductList(Map<String, Object> paramMap) throws Exception;
+	List<ProductResultVO> getProductList(Map<String, Object> paramMap) throws Exception;
 	List<EgovMap> getAttachList(Map<String, Object> paramMap) throws Exception;
-	ProductVO getProduct(String prodId) throws Exception;
+	ProductResultVO getProduct(String prodId) throws Exception;
 	void modifyProduct(ProductVO product, AttachVO attach) throws Exception;
 	void deleteProduct(String prodId) throws Exception;
 	int getProductListCnt(Map<String, Object> paramMap) throws Exception;

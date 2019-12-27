@@ -1,6 +1,7 @@
 package egovframework.market.cmmn.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import egovframework.market.cmmn.service.Category;
 import egovframework.market.cmmn.service.CommonService;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Service("commonService")
 public class CommonServiceImpl implements CommonService{

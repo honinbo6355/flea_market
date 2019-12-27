@@ -14,6 +14,8 @@
 		<typeAlias alias="category" type="egovframework.market.cmmn.service.Category"/>
 		<typeAlias alias="authority" type="egovframework.market.login.service.Authority"/>
 		<typeAlias alias="productVO" type="egovframework.myStore.register.service.ProductVO"/>
+		<typeAlias alias="productResultVO" type="egovframework.myStore.register.service.ProductResultVO"/>
 		<typeAlias alias="attachVO" type="egovframework.myStore.register.service.AttachVO"/>
+		<typeAlias alias="inquiry" type="egovframework.market.category.service.Inquiry"/>
     </typeAliases>
 </configuration>

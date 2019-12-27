@@ -75,8 +75,7 @@
 	                      	  <td><img src="${product.storedFileName}" /></td>
 	                      	  
 	                          <td><c:out value="${product.statusName}" /></td>
-	                          <td><a href="modify.do?prodId=${product.prodId}&page=${PAGING.search.page}&perPageNum=${PAGING.search.perPageNum}
-	                          &keyword=${PAGING.search.keyword}" style="color:#337ab7"><c:out value="${product.title}" /></a></td>
+	                          <td><a href="modify.do?prodId=${product.prodId}&page=${PAGING.search.page}&perPageNum=${PAGING.search.perPageNum}&keyword=${PAGING.search.keyword}" style="color:#337ab7"><c:out value="${product.title}" /></a></td>
 	                          <td><c:out value="${product.price}" /></td>
 	                          <td><fmt:formatDate value="${product.updDate}" pattern="yyyy-MM-dd"/></td>
 	                          <td>
@@ -93,8 +92,7 @@
 							<ul class="pagination">  
 								<c:if test="${PAGING.prev}">
 									<li>
-								      <a href="manage.do?page=${PAGING.startPage-1}&perPageNum=${PAGING.search.perPageNum}
-								      &keyword=${PAGING.search.keyword}" aria-label="Previous">
+								      <a href="manage.do?page=${PAGING.startPage-1}&perPageNum=${PAGING.search.perPageNum}&keyword=${PAGING.search.keyword}" aria-label="Previous">
 								        <span aria-hidden="true">&laquo;</span>
 								      </a>
 								    </li>
@@ -102,14 +100,12 @@
 								<c:forEach var="page" begin="${PAGING.startPage}" end="${PAGING.endPage}">
 									<li
 									<c:out value="${PAGING.search.page == page ? 'class=active' : ''}" />>
-									<a href="manage.do?page=${page}&perPageNum=${PAGING.search.perPageNum}
-									&keyword=${PAGING.search.keyword}">${page}</a>
+									<a href="manage.do?page=${page}&perPageNum=${PAGING.search.perPageNum}&keyword=${PAGING.search.keyword}">${page}</a>
 									</li>
 								</c:forEach>
 								<c:if test="${PAGING.next}">
 									<li>
-								      <a href="manage.do?page=${PAGING.endPage+1}&perPageNum=${PAGING.search.perPageNum}
-								      &keyword=${PAGING.search.keyword}" aria-label="Next">
+								      <a href="manage.do?page=${PAGING.endPage+1}&perPageNum=${PAGING.search.perPageNum}&keyword=${PAGING.search.keyword}" aria-label="Next">
 								        <span aria-hidden="true">&raquo;</span>
 								      </a>
 							    	</li>

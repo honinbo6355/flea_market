@@ -36,6 +36,7 @@
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- jquery latest version -->
     <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    
     <!-- handlebars.min.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
     <script type="text/javascript">
@@ -66,7 +67,6 @@
 			
 			return categoryArr;
     	}
-    	
     	
     </script>
 </head>

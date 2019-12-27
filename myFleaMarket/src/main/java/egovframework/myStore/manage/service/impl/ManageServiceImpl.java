@@ -15,6 +15,7 @@ import egovframework.market.cmmn.service.util.JsonUtils;
 import egovframework.market.cmmn.service.util.SearchVO;
 import egovframework.myStore.manage.service.ManageService;
 import egovframework.myStore.register.service.AttachVO;
+import egovframework.myStore.register.service.ProductResultVO;
 import egovframework.myStore.register.service.ProductVO;
 import egovframework.myStore.register.service.impl.RegisterMapper;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -26,7 +27,7 @@ public class ManageServiceImpl implements ManageService {
 	private ManageMapper manageMapper;
 	
 	@Override
-	public List<ProductVO> getProductList(Map<String, Object> paramMap) throws Exception {
+	public List<ProductResultVO> getProductList(Map<String, Object> paramMap) throws Exception {
 		return manageMapper.selectProductList(paramMap);
 	}
 
@@ -36,7 +37,7 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 	@Override
-	public ProductVO getProduct(String prodId) throws Exception {
+	public ProductResultVO getProduct(String prodId) throws Exception {
 		return manageMapper.selectProduct(prodId);
 	}
 	
