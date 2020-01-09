@@ -76,10 +76,13 @@
 		WHERE PROD_ID = #{prodId}
 	</delete>
 	
-	<select id="selectProductListCnt" resultType="int">
+	<select id="selectProductListCnt" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		FROM t_product
 		<where>
+			<if test="userId != null and userId != ''">
+				AND USER_ID = #{userId}
+			</if>
 			<include refid="egovframework.market.cmmn.service.impl.CommonMapper.search" />
 		</where>
 	</select>

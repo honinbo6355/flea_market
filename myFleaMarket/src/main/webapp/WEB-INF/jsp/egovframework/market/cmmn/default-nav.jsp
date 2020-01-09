@@ -8,9 +8,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
-                            <div class="logo">
+                            <div class="myLogo">
                                 <a href="main.do">
-                                    <img src="images/logo/logo.png" alt="logo">
+                                    <img src="img/main_logo.png" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -22,20 +22,19 @@
                         
                         <div class="col-md-2 col-sm-4 col-xs-3">  
                             <ul class="menu-extra">
-                                <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
                                 <c:choose>
                                 	<c:when test="${sessionScope.USER == null}">
                                 		<li style="padding:8px 10px 0px 10px;"><a href="loginRegister.do"><i class="material-icons">input</i></a></li>
                                 	</c:when>
                                 	<c:otherwise>
-		            					<li><a href="/myStore/register.do"><span class="ti-user"></span></a></li>  
+		            					<li><a href="${pageContext.request.contextPath}/myStore/register.do"><span class="ti-user"></span></a></li>  
 		            					<li><a href="logout.do"><span class="ti-power-off"></span></a></li>
 		            					<c:if test="${sessionScope.USER.authority.authority == 'admin'}">
 		            						<li><a href="/admin/main.do"><span class="ti-settings"></span></a></li>	
 		            					</c:if>
                                 	</c:otherwise>
                                 </c:choose>
-                                <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+                                <li class="cart__menu" style="padding-right:15px;"><span class="ti-shopping-cart"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -49,25 +48,6 @@
         <div class="body__overlay"></div>
         <!-- Start Offset Wrapper -->
         <div class="offset__wrapper">
-            <!-- Start Search Popap -->
-            <div class="search__area">
-                <div class="container" >
-                    <div class="row" >
-                        <div class="col-md-12" >
-                            <div class="search__inner">
-                                <form action="#" method="get">
-                                    <input placeholder="Search here... " type="text">
-                                    <button type="submit"></button>
-                                </form>
-                                <div class="search__close__btn">
-                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Search Popap -->
             
             <!-- Start Cart Panel -->
             <div class="shopping__cart">

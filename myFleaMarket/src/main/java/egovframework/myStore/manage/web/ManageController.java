@@ -51,6 +51,11 @@ public class ManageController {
 	
 	@Resource(name = "registerService")
 	private RegisterService registerService;
+
+	@ModelAttribute("menuTitle")
+	public String menuTitle() {
+		return "물품 관리";
+	}
 	
 	@RequestMapping(value = "/myStore/manage.do", method = RequestMethod.GET)
 	public String myStoreManage(ModelMap model, HttpSession session, @ModelAttribute SearchVO searchVO) throws Exception {
@@ -180,22 +185,4 @@ public class ManageController {
 		
 		return "redirect:manage.do";
 	}
-	
-//	@ResponseBody
-//	@RequestMapping(value = "/displayFile.do", method = RequestMethod.GET)
-//	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
-//		logger.info("display File ..... fileName={}", fileName);
-//		
-//		InputStream in = null;
-//		HttpHeaders headers = new HttpHeaders();
-//		String formatName = FileUtils.getFileExtension(fileName); //확장자명 
-//		MediaType mType = FileUtils.getMediaType(formatName); // 확장자명을 이용해서 MediaType get
-//
-//		File file = new File(FileUtils.uploadPath, fileName);
-//		
-//		in = new FileInputStream(file);
-//		headers.setContentType(mType);
-//		
-//		return new ResponseEntity<>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
-//	}
 }

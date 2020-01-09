@@ -32,7 +32,8 @@ public class LoginServiceImpl implements LoginService {
 	
 	private final static String CLIENT_ID = "HzqEe9I_XQh7_p3MpmVG";
 	private final static String CLIENT_SECRET = "mjIAc_gT3k";
-	private final static String REDIRECT_URI = "http://localhost:8080/callback.do";
+	//private final static String REDIRECT_URI = "http://localhost:8080/myFleaMarket/callback.do";
+	private final static String REDIRECT_URI = "http://13.124.225.208:8080/myFleaMarket/callback.do";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

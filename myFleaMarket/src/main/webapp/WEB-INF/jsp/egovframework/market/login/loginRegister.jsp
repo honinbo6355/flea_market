@@ -1,41 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<style>
-	.login input {
-		margin-bottom:15px;
-	}
-	
-	.login select {
-		margin-bottom:15px;
-	}
-	
-	.login label {
-		width:100%;
-	}
-	
-	.registerBtn {
-		border: 1px solid #d5d5d5;
-	    display: inline-block;
-	    font-size: 20px;
-	    height: 50px;
-	    line-height: 50px;
-	    text-align: center;
-	    text-transform: capitalize;
-	    transition: all 0.5s ease 0s;
-	    width: 150px;
-	    color: #4b4b4b;
-	    text-transform: uppercase;
-	}
-	
-	.registerBtn:hover {
-		background: #ff4136;
-	    color: #fff;
-	    border: 1px solid #ff4136;
-	}
-	
-</style>
+  
     <!-- Start Login Register Area -->
         <div class="htc__login__register bg__white ptb--130" style="background: rgba(0, 0, 0, 0) url(images/bg/5.jpg) no-repeat scroll center center / cover ;">
             <div class="container">
@@ -57,11 +23,13 @@
                                     <input type="text" id="loginEmail" name="loginEmail" placeholder="이메일">
                                     <input type="password" id="loginPw" name="loginPw" placeholder="패스워드">
                                 </form>
+                                <!--
                                 <div class="tabs__checkbox">
                                     <input type="checkbox">
                                     <span> Remember me</span>
                                     <span class="forget"><a href="#">Forget Password?</a></span>
                                 </div>
+                                -->
                                 <div class="row">
                                 	<div class="col-md-12">
                                 		<span id="loginResultMsg" style="color:red; display:none;">아이디 또는 패스워드가 잘못되었습니다.</span>
@@ -173,6 +141,7 @@
         			$('.registerPwCheck').on('keyup', this.registerPwCheckKeyUp);
         			$('#registerNickname').on('keyup', this.registerNicknameKeyUp);
         			$('.digit_check').on('keydown', formCheck.digitCheckKeydown);
+        			$('.digit_check').on('keyup', formCheck.digitCheckKeyUp);
         			$('#registerFrm').on('submit', this.registerFrmSubmit);
         		},
         		

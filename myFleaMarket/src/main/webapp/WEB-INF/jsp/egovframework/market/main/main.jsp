@@ -2,15 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<style>
-	@media (max-width: 991px) {
-		.categories-menu {
-		    margin-bottom: 50px;
-		}
-	}
-	
-</style>
-
 <!-- Start Feature Product -->
         <section class="categories-slider-area bg__white" style="padding-bottom:100px;">
             <div class="container">
@@ -42,7 +33,32 @@
                                 <div class="tab-pane active" id="home1">
                                     <div class="row">
                                         <div id="recommProdList" class="product-slider-active owl-carousel">
-                                        	
+                                        	<!--
+                                        	<div class="col-md-4 single__pro col-lg-4 cat--1 col-sm-4 col-xs-12">
+												<div class="product">
+								                	<div class="product__inner">
+								                    	<div class="pro__thumb">
+								                        	<a href="productDetail.do?prodId=2">
+								                            	<img src="/upload/2020/01/02/s_6dcaffb3-8b26-400e-a66c-a89e809c7425_coat - 복사본.jpg" alt="product images" style="width:270px; height:270px;">
+								                            </a>
+								                        </div>
+								                    	<div class="product__hover__info">
+								                        	<ul class="product__action">
+								                            	<li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
+								                            	<li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
+								                            	<li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+								                            </ul>
+								                        </div>
+								                    </div>
+								                    <div class="product__details">
+								                    	<h2><a href="product-details.html">aaa</a></h2>
+								                        <ul class="product__price">
+								                        	<li class="new__price">111원</li>
+								                        </ul>
+								                    </div>
+								                </div>
+								        	</div>
+								        	-->
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +76,7 @@
 				<div class="product">
                 	<div class="product__inner">
                     	<div class="pro__thumb">
-                        	<a href="#">
+                        	<a href="productDetail.do?prodId={{prodId}}">
                             	<img src="{{storedFileName}}" alt="product images" style="width:270px; height:270px;">
                             </a>
                         </div>
@@ -75,7 +91,7 @@
                     <div class="product__details">
                     	<h2><a href="product-details.html">{{title}}</a></h2>
                         <ul class="product__price">
-                        	<li class="new__price">{{price}}</li>
+                        	<li class="new__price">{{price}}원</li>
                         </ul>
                     </div>
                 </div>
@@ -114,6 +130,7 @@
 			
 			<c:forEach items="${PROD_LIST}" var="prod">
 				var prodObj = {};
+				prodObj.prodId = '${prod.prodId}';
 				prodObj.storedFileName = '${prod.storedFileName}';
 				prodObj.title = "${prod.title}";
 				prodObj.price = "${prod.price}";

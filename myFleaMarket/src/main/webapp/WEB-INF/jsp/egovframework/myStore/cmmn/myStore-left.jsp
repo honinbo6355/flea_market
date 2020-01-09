@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
@@ -11,11 +12,12 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              	<!-- <img src="images/img.jpg" alt="..." class="img-circle profile_img"> -->
+                <img src="images/store.png" id="store_img" />
               </div>
               <div class="profile_info">
-                <span>송세일님</span>
-                <h2>상점250호</h2>
+                <span>${sessionScope.USER.nickname}님의</span>
+                <h2>개인 상점</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -26,7 +28,7 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="/main.do"><i class="fa fa-home"></i> 홈 </a></li>
+                  <li><a href="${pageContext.request.contextPath}/main.do"><i class="fa fa-home"></i> 홈 </a></li>
                   <li><a href="register.do"><i class="fa fa-edit"></i> 물품 등록 </a></li>
                   <li><a href="manage.do"><i class="fa fa-desktop"></i> 물품 관리 </a></li>
                 </ul>

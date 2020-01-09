@@ -1,6 +1,7 @@
 package egovframework.myStore.register.service;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProductVO {
 	private int prodId; /* 상품 아이디 */
@@ -81,7 +82,6 @@ public class ProductVO {
 	public void setUpdDate(Date updDate) {
 		this.updDate = updDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProductVO [prodId=" + prodId + ", userId=" + userId + ", cateCode=" + cateCode + ", tradeCode="

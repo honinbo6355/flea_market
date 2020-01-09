@@ -10,25 +10,6 @@
     <link href="vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 </head>
 
-<style>
-	/*
-	.page-title .title_right {
-		float:right;
-	}
-	*/
-	
-	@media (min-width: 768px) {
-		.form-horizontal .control-label {
-			text-align: left;
-		}
-	}
-	
-	.dz-preview .dz-image img {
-		width: 100% !important;
-		height: 100% !important;
-		object-fit: cover;
-	}
-</style>
 	<div class="right_col" role="main">
           <div class="">
           	<!--  
@@ -52,7 +33,7 @@
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-9 col-sm-9 col-xs-9">
+              <div class="col-md-9 col-sm-9 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>이미지 수정</h2>
@@ -85,7 +66,7 @@
             </div>
             
             <div class="row">
-	            <div class="col-md-9 col-xs-12">
+	            <div class="col-md-9 col-sm-9 col-xs-12">
 	                <div class="x_panel">
 	                  <div class="x_title">
 	                    <h2>기본 정보</h2>
@@ -217,6 +198,7 @@
 			bindEvent : function() {
 				$('#a_category').on('change', this.aCategoryChange);
 				$('.digit_check').on('keydown', formCheck.digitCheckKeydown);
+				$('.digit_check').on('keydown', formCheck.digitCheckKeyUp);
 				$('#product_modify_form').on('submit', this.productModifyFormSubmit);
 			},
 			

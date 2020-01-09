@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- footer content -->
         <footer>
-          <div class="pull-right">
-          	(주)토르장터  
+          <div class="pull-right"> 
           </div>
           <div class="clearfix"></div>
         </footer>

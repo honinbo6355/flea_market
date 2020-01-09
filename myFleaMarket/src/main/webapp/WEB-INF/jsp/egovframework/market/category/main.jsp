@@ -27,10 +27,6 @@
                     <div class="row">
                     	<div class="col-md-3">
 	                        <div>
-	                            <div class="category-search-area">
-	                                <input placeholder="Search......" type="text">
-	                                <a class="srch-btn" href="#"><i class="zmdi zmdi-search"></i></a>    
-	                            </div>
 	                            <!-- Start Category Area -->
 	                            <div class="our-category-area mt--60" id="leftCategoryMenu">
 	                                
@@ -65,7 +61,7 @@
 	                                    <div class="product__details">
 	                                        <h2><a href="product-details.html">${prod.title}</a></h2>
 	                                        <ul class="product__price">
-	                                            <li class="new__price">${prod.price}</li>
+	                                            <li class="new__price">${prod.price}원</li>
 	                                        </ul>
 	                                    </div>
 	                                </div>
@@ -78,9 +74,9 @@
                         	</div>
                     	</div>
                     	<div class="row">
-                    			<div class="col-md-3 col-sm-3 col-xs-3">
+                    			<div class="col-md-3">
                     			</div>
-		                        <div class="col-md-9 col-sm-9 col-xs-9" style="text-align:center;">
+		                        <div class="col-md-9 col-sm-12 col-xs-12" style="text-align:center;">
 		                        	<ul class="pagination">
 		                        		<c:if test="${PAGING.prev}">
 		                        			<li><a href="categoryMain.do?page=${PAGING.search.startPage-1}&perPageNum=${PAGING.search.perPageNum}&cateCode=${CATEGORY.cateCode}&cateLevel=${CATEGORY.cateLevel}" aria-label="Previous">
@@ -109,9 +105,9 @@
         
         <script type="text/javascript">
 	        
+        	initCategory();
+        	
 			$(document).ready(function() {
-				initCategory();
-				
 				$('.pro__thumb img').each(function() {
 					var fileName = $(this).attr('src');
 					

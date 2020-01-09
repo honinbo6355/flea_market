@@ -45,12 +45,20 @@ public class RegisterController {
 	@Resource(name = "registerService")
 	private RegisterService registerService;
 	
+	@ModelAttribute("menuTitle")
+	public String menuTitle() {
+		return "물품 등록";
+	}
+	
 	@RequestMapping(value = "/myStore/register.do", method = RequestMethod.GET)
 	public String myStoreRegister(ModelMap model) throws Exception {
+		System.out.println("myStoreRegister 메소드 실행");
+		
 		try {
 			List<EgovMap> aCategoryList = registerService.getACategoryList();
 			
 			System.out.println("aCategoryList : " + aCategoryList);
+			
 			model.addAttribute("A_CATEGORY_LIST", aCategoryList);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -109,28 +117,6 @@ public class RegisterController {
 		return "redirect:manage.do";
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/myStore/uploadForm.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-//	public ResponseEntity<String> uploadForm(MultipartFile file) throws Exception {
-//		logger.info("uploadForm ....originalName={}, size={}, contentType={}"
-//				, file.getOriginalFilename(), file.getSize(), file.getContentType());
-//		
-//		ResponseEntity<String> entity = null;
-//		try {
-//			String savedFileName = FileUtils.uploadFile(file);
-//			
-//			System.out.println(savedFileName);
-//			
-//			entity = new ResponseEntity<>(savedFileName, HttpStatus.CREATED);
-//		} catch (Exception e) {
-//			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//		} finally {
-//			System.out.println("uploadForm 메소드 종료");
-//		}
-//		
-//		return entity;
-//	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/myStore/deleteFile.do", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(@RequestBody String file) throws Exception {
@@ -159,7 +145,7 @@ public class RegisterController {
 	public ResponseEntity<String> uploadForm(MultipartHttpServletRequest mhsq) throws Exception {
 		System.out.println("uploadForm");
 		ResponseEntity<String> entity = null;
-				
+		
 		try {
 			Iterator<String> iterator = mhsq.getFileNames();
 			List<String> resultFileList = new ArrayList<String>();

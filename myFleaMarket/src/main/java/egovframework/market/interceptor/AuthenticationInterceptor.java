@@ -14,7 +14,9 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		UserVO user = (UserVO)session.getAttribute("USER");
-	
+		
+		System.out.println("user : " + user);
+		
 		if (user == null) { /* 로그인 하지 않았을 경우 */
 			response.sendRedirect("/main.do");
 			return false;

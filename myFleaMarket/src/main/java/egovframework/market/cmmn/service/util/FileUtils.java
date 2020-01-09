@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 public class FileUtils {
-
+	// 실제 경로와 uploadPath 경로 이름이 같아야함!, server.xml context docBase 참고
 	public static final String uploadPath = "/upload";
 	
 	private static Map<String, MediaType> mediaMap;

@@ -1,6 +1,8 @@
 package egovframework.myStore.register.service;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProductResultVO {
 	private int prodId; /* 상품 아이디 */
@@ -97,6 +99,7 @@ public class ProductResultVO {
 	public void setTradeName(String tradeName) {
 		this.tradeName = tradeName;
 	}
+	
 	public Date getRegDate() {
 		return regDate;
 	}

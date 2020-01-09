@@ -1,6 +1,6 @@
 package egovframework.market.category.service;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -10,11 +10,12 @@ public class Inquiry {
 	private String email;
 	private String nickname;
 	private String inqContents;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	private Date regDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	private Date updDate;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	private Date regDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	private Date updDate;
+
 	public int getInqNum() {
 		return inqNum;
 	}
@@ -45,7 +46,6 @@ public class Inquiry {
 	public void setInqContents(String inqContents) {
 		this.inqContents = inqContents;
 	}
-	
 	public Date getRegDate() {
 		return regDate;
 	}

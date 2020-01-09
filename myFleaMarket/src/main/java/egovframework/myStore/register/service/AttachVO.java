@@ -1,6 +1,6 @@
 package egovframework.myStore.register.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class AttachVO {

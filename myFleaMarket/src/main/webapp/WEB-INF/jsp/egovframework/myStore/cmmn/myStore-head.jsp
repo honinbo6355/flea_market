@@ -18,21 +18,31 @@
     <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+    <!-- myCustom Style -->
+    <link href="build/css/myCustom.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     
     <script type="text/javascript">
     	var formCheck = {
-    		digitCheckKeydown : function() {
-        		if (event.keyCode >=48 && event.keyCode <= 57 ) {
-        			return true;
-        		} else if (event.keyCode === 8 || event.keyCode === 9) {
-        		    return true;
-        		}
-        		else {
-        		    event.returnValue = false;
-        		}
-        	},
+    			digitCheckKeydown : function() {
+        			debugger;
+        			
+            		if ((event.keyCode >=48) && (event.keyCode <= 57)) {
+            			return true;
+            		} else if (event.keyCode === 8 || event.keyCode === 9) {
+            		    return true;
+            		} 
+            		
+            		return false;
+            	},
+            	
+            	digitCheckKeyUp : function() {
+            		if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+                    }
+            	}
     	}
     </script>
 </head>

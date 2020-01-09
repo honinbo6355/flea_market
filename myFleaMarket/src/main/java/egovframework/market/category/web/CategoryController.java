@@ -157,6 +157,8 @@ public class CategoryController {
 	@ResponseBody
 	@RequestMapping(value = "getInqList.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public ResponseEntity<List<Inquiry>> getInqList(@RequestParam String prodId) throws Exception {
+		System.out.println("getInqList 실행");
+		
 		ResponseEntity<List<Inquiry>> entity = null;
 		
 		try {

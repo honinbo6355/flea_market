@@ -11,7 +11,6 @@
 		, 	PRICE
 		, 	DES
 		, 	STOCK
-		
 		) VALUES (
 			#{userId}
 		, 	#{cateCode}
@@ -20,7 +19,7 @@
 		, 	#{title}
 		,	#{price}
 		,	#{des}
-		,	#{stock} 
+		,	#{stock}
 		)
 	</insert>
 	

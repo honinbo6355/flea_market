@@ -3,24 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<style>
-	.page-title .title_right {
-		float:right;
-	}
-	.top_search .input-group {
-		float:left;
-	}
-	.top_search .input-group .input-group-btn{
-		width:auto;
-	}
-</style>
-
 	<div class="right_col" role="main">
 		<div class="">
             <div class="page-title">
-            	<div class="title_right" style="width:25%;">
+            	<div class="title_right">
 			       	<div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
-			            <div class="input-group">
+			            <div class="input-group" style="float:right;">
 			                <input type="text" id="keywordTxt" class="form-control" placeholder="물품명을 입력하세요..." value="${PAGING.search.keyword}">
 			                <span class="input-group-btn">
 			                	<button id="searchBtn" class="btn btn-default" type="button" onclick="searchProd()" >검색</button>
@@ -72,14 +60,14 @@
                       <tbody>
                       	<c:forEach var="product" items="${PROD_LIST}">
 	                      	<tr>
-	                      	  <td><img src="${product.storedFileName}" /></td>
+	                      	  <td><img src="${product.storedFileName}" style="width:100px; height:100px" /></td>
 	                      	  
 	                          <td><c:out value="${product.statusName}" /></td>
 	                          <td><a href="modify.do?prodId=${product.prodId}&page=${PAGING.search.page}&perPageNum=${PAGING.search.perPageNum}&keyword=${PAGING.search.keyword}" style="color:#337ab7"><c:out value="${product.title}" /></a></td>
 	                          <td><c:out value="${product.price}" /></td>
-	                          <td><fmt:formatDate value="${product.updDate}" pattern="yyyy-MM-dd"/></td>
+	                          <td><fmt:formatDate value="${product.updDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	                          <td>
-	                          	<button type="button" class="btn btn-success">보기</button>
+	                          	<button type="button" class="btn btn-success" onclick="viewProduct(${product.prodId})">보기</button>
 		                        <button type="button" class="btn btn-danger" onclick="deleteProduct(${product.prodId})">삭제</button>
 	                          </td>
 	                        </tr>	
@@ -163,6 +151,10 @@
     			$('#keyword').val("<c:out value='${PAGING.search.keyword}' />");
     			$('#deleteForm').submit();
     		}
+    	}
+    	
+    	function viewProduct(prodId) {
+    		window.location.href = "${pageContext.request.contextPath}/productDetail.do?prodId=" + prodId;
     	}
     	
     	$('#keywordTxt').keydown(function(e) {

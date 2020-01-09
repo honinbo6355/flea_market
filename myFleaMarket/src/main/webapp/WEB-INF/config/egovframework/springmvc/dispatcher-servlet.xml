@@ -101,7 +101,6 @@
     <mvc:interceptors>
     	<mvc:interceptor>
     		<mvc:mapping path="/admin/**" />
-    		<mvc:mapping path="/myStore/**" />
     		<ref bean="authenticationInterceptor" />
     	</mvc:interceptor>
     	
